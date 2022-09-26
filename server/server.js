@@ -239,7 +239,7 @@ function updateGame() {
 
 
             updateBullets(room);
-            moveEnemies(room);
+            // moveEnemies(room);
             playerEnemyContact(playersInRoom, enemiesInRoom);
 
 
@@ -550,6 +550,7 @@ function updateBullets(roomId) {
                     if (bullets[i] != null) {
                         if (rectangleContains(bullets[i].x, bullets[i].y, element[0], element[1], element[2], element[3])) {
                             bullets.splice(i, 1);
+                            console.log('bullet removed')
                         }
                     }
                 });

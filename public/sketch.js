@@ -140,7 +140,7 @@ function setup() {
 
 
     guns = [
-        //new Pistol(0,0),
+        new Pistol(0,0),
         new M1911(0, 0), //0
         new Magnum(0, 0), //1
         new Deagle(0, 0), //2
@@ -176,6 +176,7 @@ function setup() {
     closeLeaderBoardButton = createButton('Close');
 
     nameInput.position(windowWidth / 2 - 100, windowHeight / 2 + 15, 0);
+    // nameInput.addClass('form-control');
     submitNameButton.position(windowWidth / 2 + 50, windowHeight / 2 + 15, 0);
     submitNameButton.mousePressed(changeName);
     startGameButton.position(windowWidth / 2 - 150, windowHeight / 2 + 50, 0);
@@ -205,6 +206,7 @@ function setup() {
 }
 
 function draw() {
+    // return
     background(220);
     if (!gameActive && !sessionOver) {
         //textFont(inconsolata);
@@ -231,7 +233,6 @@ function draw() {
         }
 
     } else if (gameActive) {
-
         nameInput.hide();
         submitNameButton.hide();
         leaderBoardButton.hide();
@@ -457,6 +458,11 @@ function startGame() {
     socket.emit('startRoom', clientPlayer.roomId);
 }
 
+$('#start_game').click(() => {
+    console.log('clicked')
+    startGame()
+})
+
 function activateLeaderboard() {
     leaderBoardActive = true;
 }
@@ -623,3 +629,8 @@ function removePlayer(playerId) {
     players = players.filter(player => player.id !== playerId);
 }
 
+
+function test() {
+    const hi = new WallGun(150, -40, new AK(clientPlayer.x, clientPlayer.y))
+    hi.drawBlood()
+}

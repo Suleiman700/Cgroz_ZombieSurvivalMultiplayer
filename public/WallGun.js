@@ -22,20 +22,26 @@ class WallGun {
     userPickedUp(){
         if(score.money >= this.cost && !this.pickedUpBool && currentGun.name != this.gun.name){
             score.money -= this.cost;
-            currentGun = this.gun; 
+            currentGun = this.gun;
             score.ammoIn = currentGun.startingIn;
             score.ammoOut = currentGun.startingOut;
             clientPlayer.gunIndex = this.gun.gunIndex;
         }
         else if(score.money >= this.ammoCost && !this.pickedUpBool && currentGun.name == this.gun.name){
-            score.money -= this.ammoCost;  
+            score.money -= this.ammoCost;
             score.ammoOut = currentGun.startingOut;
         }
-        
+
     }
     drawPickup(){
         image(this.img, this.x + clientMap.x - 20, this.y + clientMap.y, this.gun.imgl, this.gun.imgw)
     }
+
+    drawBlood() {
+        console.log('here')
+        image(this.img, this.x + clientMap.x - 50, this.y + clientMap.y, this.gun.imgl, this.gun.imgw)
+    }
+
     offerPickup(){
         if(currentGun.name != this.gun.name){
             fill(255, 255, 255);
@@ -46,7 +52,7 @@ class WallGun {
             textSize(30);
             text(this.message2 + this.ammoCost, clientPlayer.x, clientPlayer.y + 100);
         }
-        
+
     }
     setGun(gun){
         this.gun = gun;
